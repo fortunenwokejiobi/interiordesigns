@@ -1,0 +1,131 @@
+*{
+   font-family: "Comic Sans MS, Comic Sans, cursive";
+}
+
+.website-top{
+    margin-top: 0px;
+    height: 120px;
+    background-color: antiquewhite;
+    text-align: center;
+}
+.website-name{
+    text-align: center;
+    margin-right: 2%;
+    font-family: cursive;
+    font-size: 42px;
+}
+
+.message-div{
+    border: 1px solid #ccc; /* You can adjust the border properties as needed */
+    border-color: #007bff;
+    margin-top: 2%;
+    padding: 6px;
+    width: 95%;
+}
+
+.form-group {
+    display: block; /* Make each form group appear as a block, stacking them vertically */
+    margin-bottom: 10px; /* Add some spacing between form groups */
+}
+
+.create-form {
+    width: 100%;
+    height: 50px;
+    background-color: black;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+
+    cursor: pointer;
+}
+  
+  
+input{
+    padding: 5px;
+}
+textarea {
+    width: 80%; 
+    padding: 5px; 
+}
+
+.general-form-group {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    border-color: gray;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 2%;
+
+}
+
+.form-block{
+    text-align: center;
+}
+
+.submit-button{
+    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-left: 10%;
+    justify-self: center;
+    width: 40%;
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.up-button{
+    background-color: greenyellow;
+    border: none;
+}
+
+.down-button{
+    background-color: #f2a9a3;
+    border: none;
+}
+
+.board-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px; /* Adjust the gap between image and content */
+  }
+  
+  .cover-image {
+    flex: 0 0 auto; /* Fix the width of the image */
+    width: 200px; /* Set a specific width for the image */
+    height: 150px; 
+   /* Set a specific height for the image */
+    /* Add any other styles you need for the cover image */
+  }
+  
+  .basic-info {
+    flex: 1; /* Allow the content to take the remaining space */
+  }/* Slideshow container */
+/* Slideshow container */
+
+.board-container{
+    margin-top: 10px;
+}
+
+.rating{
+    margin-top: 10px;
+}
+
+.cover-img{
+    margin-top: 30px;
+    width: 200px; /* Set a specific width for the image */
+    height: 200px; 
+
+}
+
+.design-images{
+    display: flex;
+}
+
+.design-images img{
+    height: 120px;
+    width: 100px;
+    margin-right: 5px;
+}

@@ -1,0 +1,5 @@
+{
+    "liveServer.settings.port": 5501,
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/e5914cf7-ee99-467f-9e45-910590b1ec2c/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/interiordesigns",
+    "appService.deploySubpath": "."
+}

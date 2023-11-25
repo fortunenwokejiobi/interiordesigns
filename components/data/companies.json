@@ -1,0 +1,54 @@
+[
+{
+    "name": "decor coffee house",
+    "description": "welcome there everyone, this is the very first base in the us for.we may work in texas but our heart is like the summer leaving closely we know dearly the mistakes made by others, do we complain however? no not really, we stick together always do we not? yes! panickinh is no the way to go we all know that bt you know the way of the water ha ha ha but we all joke but  no one really knows a thing or two about weelll anything to actually be perfectly honest with you, its like a joke a scary messy joke but this may just be the concept of our company we joke ebverything " ,
+    "colors": {
+        "color1": "#00c4e2",
+        "color2": "#000213",
+        "color3": "#000203",
+        "color4": "#00e223"
+    },
+    "designs": {
+        "design1": {
+            "title" : "open-floors",
+            "description": "concepts always change but an open space should feel like one",
+        
+            "rating" : 2
+         }
+    },
+    "phone": "307-202-324",
+    "email": "sample@gmail.com",
+    "score" :10
+    
+    
+},
+{
+    "name": "Bloomberg for tech interior",
+    "description": "welcome there everyone, this is the very first base in the us for." ,
+    "colors": {
+        "color1": "#00c4e2",
+        "color2": "#010213",
+        "color3": "#100203",
+        "color4": "#00e223"
+    },
+    "designs": {
+        "design1": {
+            "title" : "Modular design",
+            "description": "concepts always change but an open space should feel like one",
+        
+            "rating" : 4
+         },
+        "design2": {
+            "title" : "Prestige essence",
+            "description": "concepts always change but an open space should feel like one",
+        
+            "rating" : 2
+         }
+    },
+    "phone": "307-202-324",
+    "email": "sample@gmail.com",
+    "score" :10
+    
+    
+}
+]
