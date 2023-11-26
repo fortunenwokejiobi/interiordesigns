@@ -51,9 +51,9 @@ jobs:
       - name: Install pm2
         run: npm install pm2 -g
 
-- name: Check build-server directory contents
-  run: |
-    ls -l /home/runner/work/interiordesigns/interiordesigns/build-server  # Lists the contents of the build-server directory
+# - name: Check build-server directory contents
+#   run: |
+#     ls -l /home/runner/work/interiordesigns/interiordesigns/build-server  # Lists the contents of the build-server directory
 
 - name: Start the server with pm2
   run: |
