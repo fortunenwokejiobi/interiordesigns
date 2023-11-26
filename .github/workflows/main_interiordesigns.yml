@@ -54,7 +54,6 @@ jobs:
 
       - name: Start the server with pm2
         run: |
-          pwd
           cd build-server
           pm2 start index.js
 
