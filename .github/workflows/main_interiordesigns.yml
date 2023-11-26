@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  NODE_VERSION: '14.x' 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,7 +30,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '20'
 
       - name: Install dependencies
         run: |
@@ -44,9 +47,6 @@ jobs:
       - name: Start server
         run: pm2 start build-server/index.js
 
-      - name: shoq index.js
-        run: cat build-server/index.js
-
       # - name: Deploy to Azure
       #   uses: Azure/login@v1
       #   with:
@@ -57,8 +57,9 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'interiordesigns'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: 'build-server'
+          node-version: '20'
 
 
       - name: Stop server
