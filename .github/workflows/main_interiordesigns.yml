@@ -38,12 +38,14 @@ jobs:
         with:
           creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
 
-      - name: Azure Web App Deploy
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'interiordesigns'
-          package: 'build-server' # Replace with your build output directory
-          slot-name: 'production' # Replace with your deployment slot if applicable
+          slot-name: 'Production'
+          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
 
       - name: Stop server
         run: pm2 stop build-server/index.js
