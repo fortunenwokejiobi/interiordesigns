@@ -16,11 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-       - name: Install Azure CLI
-        run: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-      
-
       - name: Clear Node.js cache
         uses: actions/cache@v2
         with:
@@ -60,7 +55,7 @@ jobs:
       - name: 'Az CLI login without subscription'
         uses: azure/login@v1
         with:
-          creds: 'AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021'
+          creds: AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021
           allow-no-subscriptions: true
 
       - name: 'Deploy to Azure Web App'
