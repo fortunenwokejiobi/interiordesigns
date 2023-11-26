@@ -55,7 +55,7 @@ jobs:
       - name: 'Az CLI login without subscription'
         uses: azure/login@v1
         with:
-          creds: AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021
+          creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
           allow-no-subscriptions: true
 
       - name: 'Deploy to Azure Web App'
