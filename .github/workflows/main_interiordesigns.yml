@@ -1,69 +1,48 @@
-name: Build and deploy Node.js app to Azure Web App - interiordesigns
+name: Build and Deploy
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
           node-version: '14'
 
-      - name: Install required npm packages
+      - name: Install dependencies
         run: |
-          npm ci
           npm install express react react-dom serve webpack webpack-cli babel-loader @babel/core @babel/preset-env @babel/preset-react pm2 --save
 
-      - name: Run Webpack for development
-        run: npx webpack --mode development
+      - name: Build project
+        run: |
+          npx webpack --mode development
+          npx webpack --config webpack.server.js
 
-      - name: Run Webpack for server configuration
-        run: npx webpack --config webpack.server.js
+      - name: Start server
+        run: pm2 start build-server/index.js
 
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
+      - name: Deploy to Azure
+        uses: Azure/login@v1
         with:
-          name: node-app
-          path: build-server # Replace this with the directory containing your server files
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Azure Web App Deploy
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'your-azure-app-name'
+          package: 'build-server' # Replace with your build output directory
+          slot-name: 'production' # Replace with your deployment slot if applicable
 
-    - name: npm install, build, and test
-      run: |
-        npm install
-        npm run build --if-present
-        npm run test --if-present
-    - name: Upload artifact for deployment job
-      uses: actions/upload-artifact@v3
-      with:
-        name: node-app
-        path: .
+      - name: Stop server
+        run: pm2 stop build-server/index.js
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-    - name: Download artifact from build job
-      uses: actions/download-artifact@v3
-      with:
-        name: node-app
-
-    - name: 'Deploy to Azure WebApp'
-      id: deploy-to-webapp 
-      uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      # Additional steps for cleanup or notifications can be added here
