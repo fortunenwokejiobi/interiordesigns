@@ -16,11 +16,11 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '14'
 
       - name: Install required npm packages
         run: |
-          npm init -y
+          npm ci
           npm install express react react-dom serve webpack webpack-cli babel-loader @babel/core @babel/preset-env @babel/preset-react pm2 --save
 
       - name: Run Webpack for development
@@ -29,7 +29,7 @@ jobs:
       - name: Run Webpack for server configuration
         run: npx webpack --config webpack.server.js
 
- start-server:
+  start-server:
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -39,7 +39,7 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip node-app.zip
+        run: unzip release.zip
 
       - name: Install pm2
         run: npm install pm2 -g
@@ -54,7 +54,6 @@ jobs:
     needs: start-server
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - name: Download artifact from build job
