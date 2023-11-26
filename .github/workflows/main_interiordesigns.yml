@@ -52,9 +52,9 @@ jobs:
         run: npm install pm2 -g
 
 
-- name: Start the server with pm2
-  run: |
-    pm2 start /home/runner/work/interiordesigns/interiordesigns/build-server/
+      - name: Start the server with pm2
+        run: |
+          pm2 start build-server
 
   deploy:
     runs-on: ubuntu-latest
