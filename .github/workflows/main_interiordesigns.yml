@@ -51,8 +51,8 @@ jobs:
       #   uses: Azure/login@v1
       #   with:
       #     creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
-    #  - name: Print All Environment Variables
-    #    run: env
+     - name: Print All Environment Variables
+       run: node -e "console.log(process.env)"
 
       - name: 'Az CLI login without subscription'
         uses: azure/login@v1
