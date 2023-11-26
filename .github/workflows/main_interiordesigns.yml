@@ -1,4 +1,4 @@
-name: Build and deploy Node.js app to Azure Web App
+name: Build and deploy Node.js app to Azure Web App - interiordesigns
 
 on:
   push:
@@ -11,28 +11,53 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Node.js version
+        uses: actions/setup-node@v3
         with:
           node-version: '14'
 
-      - name: Install dependencies and build
+      - name: Install required npm packages
         run: |
           npm ci
-          npm run build
+          npm install express react react-dom serve webpack webpack-cli babel-loader @babel/core @babel/preset-env @babel/preset-react pm2 --save
+
+      - name: Run Webpack for development
+        run: npx webpack --mode development
+
+      - name: Run Webpack for server configuration
+        run: npx webpack --config webpack.server.js
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: dist/assets/bundle.js
+          path: build-server # Change this to the directory that contains your server files
+
+  start-server:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: node-app
+
+      - name: Unzip artifact for deployment
+        run: unzip node-app.zip
+
+      - name: Install pm2
+        run: npm install pm2 -g
+
+      - name: Start the server with pm2
+        run: |
+          cd build-server
+          pm2 start index.js
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs: start-server
     environment:
       name: 'Production'
 
@@ -41,12 +66,15 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
-          path: dist/assets
 
-      - name: Deploy to Azure Web App
+      - name: Unzip artifact for deployment
+        run: unzip node-app.zip
+      
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'interiordesigns'
           slot-name: 'Production'
-          package: dist/assets/bundle.js
+          package: build-server # Change this to the directory that contains your server files
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
