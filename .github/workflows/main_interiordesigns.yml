@@ -27,6 +27,9 @@ jobs:
           npx webpack --mode development
           npx webpack --config webpack.server.js
 
+      - name: Install PM2 globally
+        run: npm install pm2 -g
+
       - name: Start server
         run: pm2 start build-server/index.js
 
