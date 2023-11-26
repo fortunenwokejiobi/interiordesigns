@@ -45,7 +45,7 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip -o node-app.zip -d build-server
+        run: unzip /home/runner/work/interiordesigns/interiordesigns/node-app.zip -d build-server
 
       - name: Install pm2
         run: npm install pm2 -g
