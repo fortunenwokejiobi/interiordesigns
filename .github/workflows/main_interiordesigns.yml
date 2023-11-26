@@ -33,10 +33,10 @@ jobs:
       - name: Start server
         run: pm2 start build-server/index.js
 
-      - name: Deploy to Azure
-        uses: Azure/login@v1
-        with:
-          creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
+      # - name: Deploy to Azure
+      #   uses: Azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
