@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  NODE_VERSION: '20.x' 
+  NODE_VERSION: '20' 
 
 jobs:
   build:
@@ -51,8 +51,8 @@ jobs:
       #   uses: Azure/login@v1
       #   with:
       #     creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
-      - name: Print Azure Credentials
-        run: echo $AZURE_CREDENTIALS
+     - name: Print All Environment Variables
+       run: env
 
       - name: 'Az CLI login without subscription'
         uses: azure/login@v1
