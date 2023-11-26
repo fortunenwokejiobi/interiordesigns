@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  AZURE_WEBAPP_NAME: interiordesigns   # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -44,12 +48,14 @@ jobs:
       #   with:
       #     creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
 
-      - name: Azure Web App Deploy
-          uses: azure/webapps-deploy@v2
-          with:
-            app-name: 'interiordesigns'
-            package: 'build-server' # Replace with your build output directory
-            slot-name: 'production'
+     - name: 'Deploy to Azure WebApp'
+      id: deploy-to-webapp 
+      uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: build-server
+
 
       - name: Stop server
         run: pm2 stop build-server/index.js
