@@ -50,7 +50,6 @@ jobs:
 
       - name: Install pm2
         run: npm install pm2 -g
-        pwd
 
       - name: Start the server with pm2
         run: |
