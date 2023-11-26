@@ -24,7 +24,8 @@ jobs:
       - name: Install required npm packages
         run: |
           npm init -y
-          npm install react react-dom serve webpack webpack-cli babel-loader @babel/core @babel/preset-env @babel/preset-react --save
+          npm install express react react-dom serve webpack webpack-cli babel-loader @babel/core @babel/preset-env @babel/preset-react --save
+
 
       - name: Run Webpack for development
         run: npx webpack --mode development
@@ -43,7 +44,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-      
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
