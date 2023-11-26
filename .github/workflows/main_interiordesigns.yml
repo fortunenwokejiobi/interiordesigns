@@ -51,16 +51,13 @@ jobs:
       - name: Install pm2
         run: npm install pm2 -g
 
-- name: Check extracted directory contents
+- name: Check build-server directory contents
   run: |
-    ls -l    # Lists the contents of the current directory
-    pwd      # Prints the current working directory
-  working-directory: ${{ github.workspace }}/build-server 
+    ls -l /home/runner/work/interiordesigns/interiordesigns/build-server  # Lists the contents of the build-server directory
 
-      - name: Start the server with pm2
-        run: |
-          cd build-server
-          pm2 start index.js
+- name: Start the server with pm2
+  run: |
+    pm2 start /home/runner/work/interiordesigns/interiordesigns/build-server/index.js
 
   deploy:
     runs-on: ubuntu-latest
