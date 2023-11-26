@@ -48,5 +48,5 @@ jobs:
         with:
           app-name: 'interiordesigns'
           slot-name: 'Production'
-          package: dist/assets
+          package: dist/assets/bundle.js
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
