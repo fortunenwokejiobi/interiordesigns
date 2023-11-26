@@ -53,7 +53,6 @@ jobs:
  
      - name: Check extracted files
         run: |
-          ls -la
           pwd 
 
       - name: Start the server with pm2
