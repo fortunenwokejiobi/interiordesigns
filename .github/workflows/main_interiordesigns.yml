@@ -52,7 +52,6 @@ jobs:
       #   with:
       #     creds: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
       - name: Print Azure credentials
-        shell: /usr/bin/bash -e
         run: echo ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1118B9C166514FACA27227FFB5B69021 }}
         env:
           NODE_VERSION: 20
