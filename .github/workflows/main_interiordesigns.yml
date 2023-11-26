@@ -19,7 +19,7 @@ jobs:
        - name: Install Azure CLI
         run: |
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-        if: runner.os == 'Linux'
+      
 
       - name: Clear Node.js cache
         uses: actions/cache@v2
